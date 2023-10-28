@@ -2,11 +2,12 @@ import express from 'express';
 import axios from 'axios';
 import bodyParser from 'body-parser';
 import expressLayouts from 'express-ejs-layouts';
+import 'dotenv/config'
 
 const app = express()
 const PORT = 3000
-const API_OPEN_WEATHER = '5424b29707b37dfd2965b9a9a47d480b'
-const API_GEOLOCATION_KEY = '2d99f20b4da2452e9418d9c3ce4c9236'
+const API_OPEN_WEATHER = process.env.OPEN_WEATHER_API_KEY
+const API_GEOLOCATION_KEY = process.env.GEOLOCATION_API_KEY
 const days = [
     'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
 ]
@@ -89,7 +90,7 @@ app.post('/',async (req, res)=>{
     try {
         const keyword = req.body.name
         let currentDate = days[new Date().getDay()]
-        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${keyword}&appid=5424b29707b37dfd2965b9a9a47d480b`)
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${keyword}&appid=${API_OPEN_WEATHER}`)
          const result = response.data
          const data = {
             coord :result.coord,
