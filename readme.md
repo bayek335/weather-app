@@ -50,3 +50,7 @@ Then access in web browser
 https://locahost:3000/
 ```
 
+## Me
+
+- [GITHUB](https://github.com/bayek335/)
+- [LINKEDIN](https://www.linkedin.com/in/bayu-pamungkas-b85399221/)
