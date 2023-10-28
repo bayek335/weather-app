@@ -1,0 +1,107 @@
+
+    <main>
+      <!-- search bar and city name -->
+      <section class="container">
+        <div class="row">
+          <form action="/" class="col" id="search-form" method="POST">
+            <input
+              type="text"
+              id="search-input"
+              aria-describedby="searchCity"
+              placeholder="Search city..."
+              class="search-form"
+              autocomplete="off"
+              name="name"
+            />
+            <button type="submit">Search</button>
+          </form>
+          <h1
+            class="col d-flex justify-content-center align-items-center city-title"
+            id="searched-city"
+          >
+          <% if (locals.data) { %>
+           
+            <%=data.name %>
+          <% } %>
+          </h1>
+        </div>
+      </section>
+
+      <!-- temp and day info -->
+      <section class="current-weather">
+        <div class="container">
+          <% if (locals.data) { %>
+          <div class="row">
+             
+            <h1 class="col temp-title" id="current-temperature"><%= Math.floor(data.main.temp-273.15) %>°</h1>
+            <div class="col todays-info">
+              <p id="current-time"></p>
+              <h2 id="current-day"><%= currentDate %><img <% if (data.weather.main =='Clouds' && data.clouds.all > 50 || data.weather.main== 'Haze') { %>
+                src="https://img.icons8.com/color-glass/42/000000/cloud.png"
+              <% }else if(data.weather.main == 'Clouds'){%>
+                src="https://img.icons8.com/color-glass/42/000000/partly-cloudy-day.png"
+                <%}else{%>
+                  src="https://img.icons8.com/color-glass/42/000000/<%= weather_main[data.weather.main] %>.png"
+                <%} %>
+              /></h2>
+              <p id="weather-type"><%= data.weather.main %> (<%= data.weather.description %>)</p>
+            </div>
+            <div class="col d-flex align-items-center side-info">
+              <ul>
+                <li>Humidity: <span id="humidity"><%= data.main.humidity %></span></li>
+                <li>Wind: <span id="wind"><%= data.wind.speed %></span></li>
+              </ul>
+            </div>
+          </div>
+          <% } else{%>
+            <div class="row justify-content-center text-center">
+
+              <h1
+              class="col d-flex justify-content-center align-items-center city-title"
+              id="searched-city">
+              
+              Error <%=error.cod+'!! ' +error.message %>
+            </h1>
+          </div>
+            <% } %>
+        </div>
+        <hr />
+      </section>
+
+      <!--5 day forecast-->
+      <section class="container">
+        <div class="row week-forecast">
+          <div class="col">
+            <h3>Fri</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/rain.png"
+            /><br />
+            <p class="weather">Rain</p>
+            <span>2°</span>
+          </div>
+          <div class="col">
+            <h3>Sat</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/cloud.png"
+            /><br />
+            <p class="weather">Cloudy</p>
+            <span>4°</span>
+          </div>
+          <div class="col">
+            <h3>Sun</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/partly-cloudy-day.png"
+            /><br />
+            <p class="weather">Partly cloudy</p>
+            <span>6°</span>
+          </div>
+          <div class="col">
+            <h3>Mon</h3>
+            <br /><img
+              src="https://img.icons8.com/color-glass/42/000000/sun.png"
+            /><br />
+            <p class="weather">Sunny</p>
+            <span>8°</span>
+          </div>
+        </div>
+      </section>
