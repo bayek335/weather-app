@@ -1,7 +1,7 @@
 
 # Weather App
 
-An application that is built with node js, which uses express js as a framework. To get the current weather, I use Open Weather API from the OpenWeather  Website where take the free pricing
+An application that made with node js, which uses express js as a framework. To get the current weather, I use Open Weather API from the OpenWeather  Website where take the free pricing
 
 ## Features
 - Get current weather by ip
